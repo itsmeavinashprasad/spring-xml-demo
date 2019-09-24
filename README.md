@@ -24,11 +24,11 @@ Create a `spring-xml-demo` repo and push the code to master branch.
 From the master branch of `spring-xml-demo` repo create a `constructor-injection`
 branch.
 
-Add constructor to the Actor class to initialize with `name` and `gender`, and `age`
+Add constructor to the `Actor` class to initialize with `name` and `gender`, and `age`
 
-Create three beans of type Actor in the bean definition file.
+Create three beans of type `Actor` in the bean definition file.
 
-Use constructor-based injection in the bean definition file `(beans.xml)` to inject property values in
+Use `constructor-based` injection in the bean definition file `(beans.xml)` to inject property values in
 each of the three beans via name, index, and type respectively.
 
 For the `Movie` bean, use constructor based object injection in the bean definition file
