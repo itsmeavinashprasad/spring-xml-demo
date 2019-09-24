@@ -15,7 +15,7 @@
     </bean>
 
     <!--  Constructor injection based beans using name -->
-    <bean id="vin" class="com.stackroute.domain.Actor">
+    <bean id="actor" class="com.stackroute.domain.Actor">
         <constructor-arg name="name" value="Vin Diesel"/>
         <constructor-arg name="gender" value="male"/>
         <constructor-arg name="age" value="48"/>
@@ -32,16 +32,15 @@
         <constructor-arg index="2" value="42"/>
     </bean>
 
-    <!--  Movie bean using scope as singleton  -->
-    <bean id="theTransporter" class="com.stackroute.domain.Movie">
-        <constructor-arg name="actor" ref="jason"/>
-    </bean>
-    <!--  Movie bean using scope as prototype  -->
-    <bean id="fateOfTheFurious" class="com.stackroute.domain.Movie" scope="prototype">
-        <constructor-arg name="actor" ref="vin"/>
-    </bean>
+    <!--  Movie bean using autowire byName, modified vin->actor  -->
+    <bean id="fastAndFurious" class="com.stackroute.domain.Movie" autowire="byName" lazy-init="true"/>
+    <!--  Movie bean using autowire byType -->
+    <!--  This block of code will create exception
+      org.springframework.beans.factory.NoUniqueBeanDefinitionException:
+            No qualifying bean of type 'com.stackroute.domain.Actor' available:
+                expected single matching bean but found 4: rajesh,actor,rock,jason
+    <bean id="theTransporter" class="com.stackroute.domain.Movie" autowire="byType"/>
+    -->
     <!--  Movie bean using name  -->
-    <bean name="jumanji, hercules" class="com.stackroute.domain.Movie" scope="prototype">
-        <constructor-arg name="actor" ref="rock"/>
-    </bean>
+    <bean name="hercules" class="com.stackroute.domain.Movie" autowire="constructor" lazy-init="true"/>
 </beans>
