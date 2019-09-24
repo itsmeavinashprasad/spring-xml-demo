@@ -5,12 +5,43 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="rajesh" class="com.stackroute.domain.Actor">
-        <property name="name" value="Rajesh" />
+        <property name="name" value="Rajesh Khanna" />
         <property name="gender" value="male" />
         <property name="age" value="45" />
     </bean>
 
     <bean id="movie" class="com.stackroute.domain.Movie">
         <property name="actor" ref="rajesh"/>
+    </bean>
+
+    <!--  Constructor injection based beans using name -->
+    <bean id="vin" class="com.stackroute.domain.Actor">
+        <constructor-arg name="name" value="Vin Diesel"/>
+        <constructor-arg name="gender" value="male"/>
+        <constructor-arg name="age" value="48"/>
+    </bean>
+    <!--  Constructor injection based beans using type -->
+    <bean id="rock" class="com.stackroute.domain.Actor">
+        <constructor-arg type="java.lang.String" value="Dwayne Johnson"/>
+        <constructor-arg type="java.lang.String" value="male"/>
+        <constructor-arg type="int" value="50"/>
+    </bean>
+    <bean id="jason" class="com.stackroute.domain.Actor">
+        <constructor-arg index="0" value="Jason Statham"/>
+        <constructor-arg index="1" value="male"/>
+        <constructor-arg index="2" value="42"/>
+    </bean>
+
+    <!--  Movie bean using scope as singleton  -->
+    <bean id="theTransporter" class="com.stackroute.domain.Movie">
+        <constructor-arg name="actor" ref="jason"/>
+    </bean>
+    <!--  Movie bean using scope as prototype  -->
+    <bean id="fateOfTheFurious" class="com.stackroute.domain.Movie" scope="prototype">
+        <constructor-arg name="actor" ref="vin"/>
+    </bean>
+    <!--  Movie bean using name  -->
+    <bean name="jumanji, hercules" class="com.stackroute.domain.Movie" scope="prototype">
+        <constructor-arg name="actor" ref="rock"/>
     </bean>
 </beans>
